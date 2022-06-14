@@ -53,18 +53,27 @@ const creatTask = (task) => {
     </div>
 </div>`
 
+
 taskList.push(tasks);
+storeList();
 el.list.appendChild(tasks);
-
-
 };
 
 //event listner that listens for add button.
 function addTask() {
+  
   creatTask();
 }
 
 //function that stores task list.
+function storeList() {
+  listData = JSON.stringify(taskList);
+  console.log(listData);
+  localStorage.setItem("storage_key", taskList);
+
+  let list = localStorage.getItem("storage_key");
+  let myJSON = JSON.parse(list);
+}
 
 //event listener that removes task from array with delete button.
 

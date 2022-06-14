@@ -42,21 +42,21 @@ const creatTask = (task) => {
       <div class="task-content">
         <div class="list-of-task">
         <div class="task" data-id="${id}">
-        <input type="checkbox" class="tick">
         <div class="new-task-created">${taskNew}</div>
         <label class="due-date">${taskDate}</label>
         <label class="due-time">${taskTime}</label>
     </div>
     <div class="atcion-buttons">
-        <button class="edit" data-id="">Edit</button>
-        <button class="delete" data-id="">Delete</button>
+        <button onclick="editItem()" class="edit" data-id="${id}">Edit</button>
+        <button onclick="deleteItem()" class="delete" data-id="${id}">Delete</button>
+        <button onclick="completeItem()" class="complete" data-id="${id}">Complete</button>
     </div>
-</div>`
+</div>`;
 
 
 taskList.push(tasks);
-storeList();
 el.list.appendChild(tasks);
+completeItem();
 };
 
 //event listner that listens for add button.
@@ -75,14 +75,29 @@ function storeList() {
   let myJSON = JSON.parse(list);
 }
 
-//event listener that removes task from array with delete button.
-
+//function that removes task from array with delete button.
+function deleteItem(){
+  taskList.forEach((tasks) => {
+    
+  });
+}
 
 //function that removes stored task when deleted.
 
 //event listener that edits tasks with date and time.
 
 //event listener that completes task.
+function completeItem(){
 
+  let taskIdex = document.querySelector(".new-task-created");
+
+  taskList.forEach((item) => {
+    if (taskIdex) {
+      item.style.textDecoration = "line-through";
+    } else {
+      item.style.textDecoration = "none";
+    }
+  });
+}
 
 

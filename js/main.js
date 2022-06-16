@@ -1,103 +1,83 @@
 // variables object
-
 const el = {
   form: document.querySelector(".form"),
   input: document.querySelector(".user-input"),
   list: document.querySelector(".list"),
   date: document.querySelector(".date"),
-  time: document.querySelector(".time")
+  time: document.querySelector(".time"),
 };
 //local storage key
 
-const storage_key = "tasks-storage-key";
+const STORAGE_KEY = "tasks-storage-key";
 
 //Create ID
 
-const createId = () =>`${Math.floor(Math.random() * 10000)}${new Date().getTime()}`;
-  
+const createId = () =>
+  `${Math.floor(Math.random() * 10000)}${new Date().getTime()}`;
+
 //variable of empty array that gets new task
- let taskList = [];
- 
+let taskList = [];
+
 //function that creates new tasks with date and time
 const creatTask = (task) => {
-  const id = createId();
-  const taskNew = el.input.value;
-  const taskDate = el.date.value;
-  const taskTime = el.time.value;
+  
+  
 
-  if (!taskNew) {
+  const data = {
+   id: createId(),
+  taskNew: el.input.value,
+  taskDate:el.date.value,
+   taskTime: el.time.value,
+}
+
+  if (!data.taskNew) {
     alert("Please add a new Task");
   }
-  if (!taskDate) {
+  if (!data.taskDate) {
     alert("Please add a new Task with a due date");
   }
-  if (!taskTime) {
+  if (!data.taskTime) {
     alert("Please add a new Task with a due time");
   }
 
-      const tasks = document.createElement("div");
+  const tasks = document.createElement("div");
 
-      tasks.innerHTML = `
-      
-      <div class="task-content">
-        <div class="list-of-task">
-        <div class="task" data-id="${id}">
-        <div class="new-task-created">${taskNew}</div>
-        <label class="due-date">${taskDate}</label>
-        <label class="due-time">${taskTime}</label>
+  tasks.innerHTML = `
+       <div class="task-content">
+        <div class="task" data-id="${data.id}">
+        <div class="new-task-created">${data.taskNew}</div>
+        <label class="due-date">${data.taskDate}</label>
+        <label class="due-time">${data.taskTime}</label>
     </div>
+
     <div class="atcion-buttons">
-        <button onclick="editItem()" class="edit" data-id="${id}">Edit</button>
-        <button onclick="deleteItem()" class="delete" data-id="${id}">Delete</button>
-        <button onclick="completeItem()" class="complete" data-id="${id}">Complete</button>
+        <button onclick="editItem()" class="edit" data-id="${data.id}">Edit</button>
+        <button onclick="deleteItem()" class="delete" data-id="${data.id}">Delete</button>
+        <button onclick="completeItem()" class="complete" data-id="${data.id}">Complete</button>
     </div>
 </div>`;
 
-
-taskList.push(tasks);
-el.list.appendChild(tasks);
-completeItem();
+  taskList.push(data);
+  el.list.appendChild(tasks);
+  storeList();
 };
+
+
 
 //event listner that listens for add button.
 function addTask() {
-  
   creatTask();
 }
 
 //function that stores task list.
 function storeList() {
-  listData = JSON.stringify(taskList);
-  console.log(listData);
-  localStorage.setItem("storage_key", taskList);
-
-  let list = localStorage.getItem("storage_key");
-  let myJSON = JSON.parse(list);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(taskList));
 }
 
 //function that removes task from array with delete button.
-function deleteItem(){
-  taskList.forEach((tasks) => {
-    
-  });
-}
 
 //function that removes stored task when deleted.
 
 //event listener that edits tasks with date and time.
 
 //event listener that completes task.
-function completeItem(){
-
-  let taskIdex = document.querySelector(".new-task-created");
-
-  taskList.forEach((item) => {
-    if (taskIdex) {
-      item.style.textDecoration = "line-through";
-    } else {
-      item.style.textDecoration = "none";
-    }
-  });
-}
-
-

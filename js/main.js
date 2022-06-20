@@ -16,32 +16,28 @@ const createId = () =>
   `${Math.floor(Math.random() * 10000)}${new Date().getTime()}`;
 
 //variable of empty array that gets new task
-let taskList = [];
+let taskList = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
 
-//function that creates new tasks with date and time
 
-const creatTask = (task) => {
-  
+function makeNewTask() {
+
   const data = {
-   id: createId(),
-  taskNew: el.input.value,
-  taskDate:el.date.value,
-   taskTime: el.time.value,
+
+    id: createId(),
+    taskNew: el.input.value,
+    taskDate: el.date.value,
+    taskTime: el.time.value,
+  };
+
+  return data
+  
 }
+console.log(makeNewTask());
+//function that creates new tasks with date and time
+function display(data) {
+  const tasks = document.createElement("div");
 
-  if (!data.taskNew) {
-    alert("Please add a new Task");
-  }
-  if (!data.taskDate) {
-    alert("Please add a new Task with a due date");
-  }
-  if (!data.taskTime) {
-    alert("Please add a new Task with a due time");
-  }
-
-    const tasks = document.createElement("div");
-
-    tasks.innerHTML = `
+  tasks.innerHTML = `
        <div class="task-content">
         <div class="task" data-id="${data.id}">
         <div class="new-task-created">${data.taskNew}</div>
@@ -49,41 +45,34 @@ const creatTask = (task) => {
         <label class="due-time">${data.taskTime}</label>
     </div>
 
-    <div class="atcion-buttons">
+    <div class="action-buttons">
         <button onclick="editItem()" class="edit" data-id="${data.id}">Edit</button>
         <button onclick="deleteItem()" class="delete" data-id="${data.id}">Delete</button>
         <button onclick="completeItem()" class="complete" data-id="${data.id}">Complete</button>
     </div>
 </div>`;
 
-
   taskList.push(data);
-  console.log(taskList);
   el.list.appendChild(tasks);
-  storeList();
-};
+}
 
+taskList.forEach(display)
+console.log(display());
 
 //event listner that listens for add button.
 function addTask() {
-  creatTask();
+  makeNewTask();
+  display();
 }
 
 //function that stores task list.
 function storeList() {
-
   localStorage.setItem(STORAGE_KEY, JSON.stringify(taskList));
 }
 
 //function that removes task from array with delete button.
 function deleteItem() {
-
-  for(let i = 0; i < taskList.length; i++){
-    if(taskList[i]){
-      taskList.remove(data);
-    }
-  }
-  creatTask();
+  display();
 }
 
 //function that removes stored task when deleted.

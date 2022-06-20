@@ -19,10 +19,9 @@ const createId = () =>
 let taskList = [];
 
 //function that creates new tasks with date and time
+
 const creatTask = (task) => {
   
-  
-
   const data = {
    id: createId(),
   taskNew: el.input.value,
@@ -40,9 +39,9 @@ const creatTask = (task) => {
     alert("Please add a new Task with a due time");
   }
 
-  const tasks = document.createElement("div");
+    const tasks = document.createElement("div");
 
-  tasks.innerHTML = `
+    tasks.innerHTML = `
        <div class="task-content">
         <div class="task" data-id="${data.id}">
         <div class="new-task-created">${data.taskNew}</div>
@@ -57,11 +56,12 @@ const creatTask = (task) => {
     </div>
 </div>`;
 
+
   taskList.push(data);
+  console.log(taskList);
   el.list.appendChild(tasks);
   storeList();
 };
-
 
 
 //event listner that listens for add button.
@@ -71,13 +71,23 @@ function addTask() {
 
 //function that stores task list.
 function storeList() {
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(taskList));
 }
 
 //function that removes task from array with delete button.
+function deleteItem() {
+
+  for(let i = 0; i < taskList.length; i++){
+    if(taskList[i]){
+      taskList.remove(data);
+    }
+  }
+  creatTask();
+}
 
 //function that removes stored task when deleted.
 
-//event listener that edits tasks with date and time.
+//function that that edits tasks with date and time.
 
-//event listener that completes task.
+//function that that completes task.

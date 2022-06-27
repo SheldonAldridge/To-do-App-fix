@@ -22,7 +22,6 @@ let taskList = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
 function makeNewTask() {
 
   const data = {
-
     id: createId(),
     taskNew: el.input.value,
     taskDate: el.date.value,
@@ -30,13 +29,14 @@ function makeNewTask() {
   };
 
   return data
-  
 }
-console.log(makeNewTask());
+
+
 //function that creates new tasks with date and time
-function display(data) {
+function display() {
   const tasks = document.createElement("div");
 
+  data = makeNewTask();
   tasks.innerHTML = `
        <div class="task-content">
         <div class="task" data-id="${data.id}">
@@ -52,16 +52,13 @@ function display(data) {
     </div>
 </div>`;
 
-  taskList.push(data);
+  taskList.push(tasks);
   el.list.appendChild(tasks);
+  
 }
-
-taskList.forEach(display)
-console.log(display());
 
 //event listner that listens for add button.
 function addTask() {
-  makeNewTask();
   display();
 }
 

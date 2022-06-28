@@ -37,12 +37,15 @@ function display() {
   const tasks = document.createElement("div");
 
   data = makeNewTask();
+
   tasks.innerHTML = `
        <div class="task-content">
+         <div class="item-content">
         <div class="task" data-id="${data.id}">
         <div class="new-task-created">${data.taskNew}</div>
         <label class="due-date">${data.taskDate}</label>
         <label class="due-time">${data.taskTime}</label>
+        </div>
     </div>
 
     <div class="action-buttons">
@@ -54,7 +57,6 @@ function display() {
 
   taskList.push(tasks);
   el.list.appendChild(tasks);
-  
 }
 
 //event listner that listens for add button.
@@ -68,12 +70,21 @@ function storeList() {
 }
 
 //function that removes task from array with delete button.
+
 function deleteItem() {
-  display();
+  let removeitem = document.querySelector(".task-content");
+  removeitem.parentNode.removeChild(removeitem);
+  localStorage.removeItem(STORAGE_KEY);
 }
 
 //function that removes stored task when deleted.
 
 //function that that edits tasks with date and time.
+function editItem(){
+
+}
 
 //function that that completes task.
+function completeItem() {
+taskList.splice
+}

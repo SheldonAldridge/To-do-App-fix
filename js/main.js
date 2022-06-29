@@ -60,7 +60,7 @@ function renderList(list) {
 
 //event listner that listens for add button.
 function addTask() {
-  display();
+  renderList();
 }
 
 //function that stores task list.

@@ -18,6 +18,8 @@ const createId = () =>
 //variable of empty array that gets new task
 let taskList = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? "[]");
 
+renderList();
+
 function makeNewTask() {
   const data = {
     id: createId(),
@@ -29,37 +31,45 @@ function makeNewTask() {
   return data;
 }
 
-//function that creates new tasks with date and time
-function display() {
-   data = makeNewTask();
-   taskList.push(data); 
-   renderList(taskList); 
-   storeList();
-}
-
-function renderList(list) {
-  list.forEach(function (data) {
-    const tasks = document.createElement("div");
-    let newtask = (tasks.innerHTML = `
-         <div class="task-content">
-          <div class="task" data-id="${data.id}">
-          <div class="new-task-created">${data.taskNew}</div>
-          <label class="due-date">${data.taskDate}</label>
-          <label class="due-time">${data.taskTime}</label>
-      </div>
-  
-      <div class="action-buttons">
-          <button onclick="editItem(event)" class="edit" data-id="${data.id}">Edit</button>
-          <button onclick="deleteItem(event)" class="delete" data-id="${data.id}">Delete</button>
-          <button onclick="completeItem(event)" class="complete" data-id="${data.id}">Complete</button>
-      </div>
-  </div>`);
-    el.list.appendChild(tasks);
+function renderList() {
+  // actually reset the list innerHTML to the new list (in order to facilitate removing / adding -- not very efficient)
+  el.list.innerHTML = taskList.map(function (data) {
+    return `<div class="task">
+            <div class="task-content">
+                <div class="task" data-id="${data.id}">
+                <div class="new-task-created">${data.taskNew}</div>
+                <label class="due-date">${data.taskDate}</label>
+                <label class="due-time">${data.taskTime}</label>
+            </div>
+    
+            <div class="action-buttons">
+                <button onclick="editItem(event)" class="edit" data-id="${data.id}">Edit</button>
+                <button onclick="deleteItem(event)" class="delete" data-id="${data.id}">Delete</button>
+                <button onclick="completeItem(event)" class="complete" data-id="${data.id}">Complete</button>
+            </div>
+        </div>`;
+        
   });
+
+  
 }
 
 //event listner that listens for add button.
 function addTask() {
+  taskList.push(makeNewTask());
+  // store the list on localstorage because data changed
+  storeList();
+  // render list again because you've added a new entry
+  renderList();
+  
+}
+
+//function that removes task from array with delete button.
+function deleteItem(event) {
+  taskList.splice(taskList.indexOf(event.target.dataset.id), 1);
+  // store the list on localstorage because data changed
+  storeList();
+  // render list again because entry was removed
   renderList();
 }
 
@@ -68,23 +78,12 @@ function storeList() {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(taskList));
 }
 
-//function that removes task from array with delete button.
-
-function deleteItem() {
-  let removeitem = document.querySelector(".task-content");
-  removeitem.parentNode.removeChild(removeitem);
-  window.localStorage.removeItem(STORAGE_KEY);
-}
-
-//function that removes stored task when deleted.
-
 //function that that edits tasks with date and time.
 function editItem() {}
 
 //function that that completes task.
 function completeItem(event) {
   const element = event.target.closest(".task-content");
-  console.log(element);
   let taskItem = element.querySelector(".new-task-created");
   let dateItem = element.querySelector(".due-date");
   let timeItem = element.querySelector(".due-time");

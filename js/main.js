@@ -10,6 +10,14 @@ const el = {
   time: document.querySelector(".time"),
 };
 
+const updateEl = {
+  formUpdate: document.querySelector(".form-update"),
+  inputUpdate: document.querySelector(".user-input"),
+  modal: document.querySelector(".modal"),
+  dateUpdate: document.querySelector(".date-update"),
+  timeUpdate: document.querySelector(".time-update"),
+};
+
 //Create ID
 
 const createId = () =>
@@ -31,8 +39,20 @@ function makeNewTask() {
   return data;
 }
 
+function updateTask() {
+  const dataUpdate = {
+    id: createId(),
+    inputUpdate: updateEl.inputUpdate.value,
+    dateUpdate: updateEl.dateUpdate.value,
+    timeUpdate: updateEl.timeUpdate.value,
+  };
+
+  return dataUpdate;
+}
+
+
 function renderList() {
-  // actually reset the list innerHTML to the new list (in order to facilitate removing / adding -- not very efficient)
+  // This resets the list innerHTML to the new list
   el.list.innerHTML = taskList.map(function (data) {
     return `<div class="task">
             <div class="task-content">
@@ -48,7 +68,6 @@ function renderList() {
                 <button onclick="completeItem(event)" class="complete" data-id="${data.id}">Complete</button>
             </div>
         </div>`;
-        
   });
 
   
@@ -80,8 +99,24 @@ function storeList() {
 
 //function that that edits tasks with date and time.
 function editItem() {
-  
+
+  let updateInput = document.createElement("div")
+  updateInput.innerHTML = `<div class="form-update">
+        <input class ="input-update" type="text">
+        <input class="date-update" type="date">
+        <input class="time-update" type="time">
+        <button onclick="UpdateTask()" class="update" id="update">Save</button>
+        <button onclick="close()" class="close" id="close">Save</button>
+    </div>`;
+
+    updateEl.modal.appendChild(updateInput);
 }
+
+
+function UpdateTask(){
+
+}
+
 
 //function that that completes task.
 function completeItem(event) {

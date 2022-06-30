@@ -79,7 +79,9 @@ function storeList() {
 }
 
 //function that that edits tasks with date and time.
-function editItem() {}
+function editItem() {
+  
+}
 
 //function that that completes task.
 function completeItem(event) {

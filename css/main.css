@@ -1,0 +1,427 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne&display=swap");
+
+@font-face {
+  font-family: digital-7;
+  src: url(../fonts/digital-7/digital-7.ttf);
+}
+
+:root {
+  --dark: #2d39e3;
+  --darker: #232975;
+  --darkest: #000a99;
+  --pink: #ec4899;
+  --purple: #8b5cf6;
+  --light: #eee;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Fira sans", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #fff;
+  background-color: var(--darker);
+  margin: 0 auto;
+}
+
+.header {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header img{
+    width:10vw;
+    margin-left: 20rem;
+    filter: invert(70%) sepia(64%) saturate(6983%) hue-rotate(304deg) brightness(95%) contrast(95%);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+
+.time-display{
+  font-size: 1.25rem;
+  background-image: linear-gradient(to right, var(--pink), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  float: right;
+  margin-top: -4rem;
+  margin-right:4rem;
+}
+
+.form{
+width: 60rem;
+display: flex;
+}
+
+.add-task{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--darkest);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem; 
+}
+
+.user-input{
+        flex: 1 1 0%;
+    background-color: var(--darker);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: var(--light);
+    font-size: 1.25rem;
+    width: 30rem;
+}
+
+.date{
+    font-size: 1.25rem;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
+.time{
+    font-size: 1.25rem;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
+.add{
+    color: var(--pink);
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: -1rem;
+    
+}
+.task-content{
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem; 
+    width:45rem;
+    
+}
+
+.list{
+  background-color: var(--darkest);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.new-task-created{
+    flex: 1 1 0%;
+    background-color: var(--darker);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: var(--light);
+    font-size: 1.25rem;
+    width: 30rem;
+}
+
+.due-date{
+    font-size: 1rem;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.due-time{
+    font-size: 1.25rem;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.delete,.action-buttons,.edit,.complete {
+    margin-top: 0.5rem;
+    background-image: linear-gradient(to right, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.edit:hover,.delete:hover,.complete:hover{
+  font-size: 20px;
+}
+
+button,input{
+    border: none;
+    outline: none;
+    background: none;
+    
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left:-2rem;
+    cursor: pointer;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+margin-left:-0.5rem;
+cursor: pointer;
+}
+
+.sky {
+  position: relative;
+  width: 24%;
+  height: 100%;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotate(45deg);
+  top: 317px;
+  left: 312px;
+  z-index: -1;
+}
+
+.sky2 {
+  position: relative;
+  left: 684px;
+  top: 496px;
+  width: 24%;
+  height: 55%;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotate(51deg);
+  z-index: -1;
+}
+
+.sky3 {
+  position: relative;
+  left: 332px;
+  top: 704px;
+  width: 24%;
+  height: 55%;
+  -webkit-transform: rotateZ(45deg);
+  transform: rotate(51deg);
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 20px;
+  border-radius: 885px;
+  background: linear-gradient(-45deg, #eef0f5, rgba(0, 0, 255, 0));
+
+  -webkit-filter: drop-shadow(0 0 6px #eef1f8);
+  filter: drop-shadow(0 0 6px #d7dff0);
+  -webkit-animation: tail 3000ms ease-in-out infinite,
+    shooting 3000ms ease-in-out infinite;
+  animation: tail 3000ms ease-in-out infinite,
+    shooting 3000ms ease-in-out infinite;
+}
+
+.star::before,
+.star::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    -45deg,
+    rgba(0, 0, 255, 0),
+    #eaeef8,
+    rgba(0, 0, 255, 0)
+  );
+}
+
+.star::after {
+  -webkit-transform: translateX(50%) rotateZ(-45deg);
+  transform: translateX(50%) rotateZ(-45deg);
+}
+
+.star:nth-child(1) {
+  top: calc(50% - -180px);
+  left: calc(13% - 641px);
+  -webkit-animation-delay: 4000ms;
+  animation-delay: 4000ms;
+}
+
+.star:nth-child(1)::before,
+.star:nth-child(1)::after {
+  -webkit-animation-delay: 4000ms;
+  animation-delay: 4000ms;
+}
+.star:nth-child(2) {
+  top: calc(49% - -43px);
+  left: calc(-23% - 183px);
+  -webkit-animation-delay: 5000ms;
+  animation-delay: 5000ms;
+}
+.star:nth-child(2)::before,
+.star:nth-child(2)::after {
+  -webkit-animation-delay: 5000ms;
+  animation-delay: 5000ms;
+}
+.star:nth-child(3) {
+  top: calc(50% - 60px);
+  left: calc(50% - 173px);
+  -webkit-animation-delay: 6000ms;
+  animation-delay: 6000ms;
+}
+.star:nth-child(3)::before,
+.star:nth-child(3)::after {
+  -webkit-animation-delay: 6000ms;
+  animation-delay: 6000ms;
+}
+.star:nth-child(4) {
+  top: calc(50% - -29px);
+  left: calc(50% - 113px);
+  -webkit-animation-delay: 7000ms;
+  animation-delay: 7000ms;
+}
+.star:nth-child(4)::before,
+.star:nth-child(4)::after {
+  -webkit-animation-delay: 7000ms;
+  animation-delay: 7000ms;
+}
+.star:nth-child(5) {
+  top: calc(50% - 146px);
+  left: calc(50% - 112px);
+  -webkit-animation-delay: 8000ms;
+  animation-delay: 8000ms;
+}
+.star:nth-child(5)::before,
+.star:nth-child(5)::after {
+  -webkit-animation-delay: 8000ms;
+  animation-delay: 8000ms;
+}
+.star:nth-child(6) {
+  top: calc(50% - -108px);
+  left: calc(50% - 160px);
+  -webkit-animation-delay: 9000ms;
+  animation-delay: 9000ms;
+}
+.star:nth-child(6)::before,
+.star:nth-child(6)::after {
+  -webkit-animation-delay: 9000ms;
+  animation-delay: 9000ms;
+}
+.star:nth-child(7) {
+  top: calc(50% - 52px);
+  left: calc(50% - 72px);
+  -webkit-animation-delay: 10000ms;
+  animation-delay: 10000ms;
+}
+.star:nth-child(7)::before,
+.star:nth-child(7)::after {
+  -webkit-animation-delay: 10000ms;
+  animation-delay: 10000ms;
+}
+
+.star:nth-child(8) {
+  top: calc(50% - 320px);
+  left: calc(50% - 100px);
+  -webkit-animation-delay: 10000ms;
+  animation-delay: 10000ms;
+}
+.star:nth-child(8)::before,
+.star:nth-child(8)::after {
+  -webkit-animation-delay: 10000ms;
+  animation-delay: 10000ms;
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 100px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes shining {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 30px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes shining {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 30px;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes tail {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 30%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes shooting {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(270px);
+    transform: translateX(270px);
+  }
+}
+
+@keyframes shooting {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(270px);
+    transform: translateX(270px);
+  }
+}
+
+
+  .sky {
+    top: 278px;
+    left: 385px;
+  }
+
+  .sky2 {
+    top: 500px;
+    left: 385px;
+  }
+
+  .sky3 {
+    top: 450px;
+    left: 600px;
+  }

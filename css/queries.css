@@ -1,0 +1,232 @@
+@media (max-width:360px){
+
+.header img{
+width:5em;
+margin-left: 9em;
+margin-bottom:3em;
+}
+
+.header h1{
+ font-size: 1.5em;
+}
+
+
+.time-display{
+    margin-right:2em;
+    font-size:0.8em;
+    padding-top: 1em;
+}
+
+.form{
+   width:21rem;
+}
+
+.add-task{
+width:20em;
+}
+
+.user-input{
+   padding: 0.5em; 
+   width:10em;
+   font-size: 1em;
+}
+
+.user-input::placeholder{
+    font-size: 12px;
+}
+
+.date,.time{
+ font-size: 10px;
+ margin-top:-3em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    padding-left:15px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+padding-left:10px;
+}
+
+.add{
+    font-size: 14px;
+    position: absolute;
+    margin-top: 3em;
+    margin-left: 15em;
+}
+.task-content{
+    width: 21em;
+}
+
+.new-task-created{
+    padding: 0.5em;
+    width: 10em;
+    font-size: 1em;
+}
+
+.due-date{
+    font-size: 10px;
+    margin-top: -3em; 
+}
+
+.due-time{
+    font-size: 10px;
+    margin-top: -3em; 
+}
+
+.edit,.delete,.complete{
+   font-size: 14px; 
+}
+
+.sky,.sky2,.sky3{
+display:none;
+}
+
+}
+
+
+@media (max-width:576px){
+
+.header img{
+width: 20vw;
+margin-left: 14em;
+margin-bottom:3em;
+}
+
+.header h1{
+ font-size: 2em;
+}
+
+
+.time-display{
+    margin-right:7em;
+    font-size:1em;
+    padding-top: 1em;
+}
+
+.form{
+   width:34rem;
+}
+
+.add-task{
+width:28em;
+}
+
+.user-input{
+   padding: 1em; 
+   width:10em;
+}
+
+.user-input::placeholder{
+    font-size: 15px;
+}
+
+.date,.time{
+ font-size: 15px;
+ margin-top:0em;
+}
+
+.add{
+    font-size: 18px;
+}
+
+.task-content{
+    width: 34em;
+}
+
+.new-task-created{
+    padding: 0.5em;
+    width: 16em;
+    font-size: 1em;
+}
+
+
+.due-date{
+    font-size: 15px;
+    margin-top: -3em; 
+}
+
+.due-time{
+    font-size: 15px;
+    margin-top: -3em; 
+}
+
+.edit,.delete,.complete{
+   font-size: 15px; 
+}
+
+.sky,.sky2,.sky3{
+display:none;
+}
+}
+
+@media (max-width:768px){
+
+.header img{
+width: 24vw;
+margin-left: 15em;
+}
+
+.header h1{
+ font-size: 2em;
+}
+
+
+.time-display{
+    margin-right:7em;
+    font-size:1em;
+    padding-top: 1em;
+}
+
+.form{
+   width:46rem;
+}
+
+.add-task{
+width:40em;
+}
+
+.user-input{
+   padding: 1em; 
+   width:10em;
+}
+
+.user-input::placeholder{
+    font-size: 20px;
+}
+
+.date,.time{
+ font-size: 15px;
+ margin-top:0em;
+}
+
+.add{
+    font-size: 18px;
+}
+
+.task-content{
+    width: 34em;
+}
+
+.new-task-created{
+padding: 1em;
+width: 21em;
+font-size: 1em;
+}
+
+
+.due-date{
+    font-size: 15px;
+    margin-top: -3em; 
+}
+
+.due-time{
+    font-size: 15px;
+    margin-top: -3em; 
+}
+
+.edit,.delete,.complete{
+   font-size: 15px; 
+}
+
+}

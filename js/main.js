@@ -50,44 +50,41 @@ function updateTask() {
   return dataUpdate;
 }
 
-
 function renderList() {
   // This resets the list innerHTML to the new list
-  el.list.innerHTML = taskList.map(function (data) {
+  el.list.innerHTML = taskList.map(function (data, i) {
     return `<div class="task">
             <div class="task-content">
                 <div class="task" data-id="${data.id}">
-                <input class="new-task-created" value="${data.taskNew}" readonly></input>
+                <input class="new-task-created" value="${data.taskNew}" readonly style="${data.textDecoration ? "text-decoration: line-through" : ""}"></input>
                 <input class="due-date" type="date" value="${data.taskDate}" readonly></input>
                 <input class="due-time" type="time" value="${data.taskTime}" readonly></input>
-                
             </div>
     
             <div class="action-buttons">
-                <button onclick="editItem(event)" class="edit" data-id="${data.id}">Edit</button>
-                <button onclick="deleteItem(event)" class="delete" data-id="${data.id}">Delete</button>
-                <button onclick="completeItem(event)" class="complete" data-id="${data.id}">Complete</button>
-            
+                <button onclick="editItem(event, ${i})" class="edit" data-id="${data.id}">Edit</button>
+                <button onclick="deleteItem(event, ${i})" class="delete" data-id="${data.id}">Delete</button>
+                <button onclick="completeItem(event, ${i})" class="complete" data-id="${data.id}">Complete</button>
         </div>`;
   })
+  
   el.input.value = "";
 
-  
 }
 
 //event listner that listens for add button.
 function addTask() {
   taskList.push(makeNewTask());
+
   // store the list on localstorage because data changed
-  storeList();
+    storeList();
   // render list again because you've added a new entry
   renderList();
-  
 }
 
 //function that removes task from array with delete button.
-function deleteItem(event) {
-  taskList.splice(taskList.indexOf(event.target.dataset.id), 1);
+function deleteItem(event, i) {
+  taskList.splice(i, 1);
 
   // store the list on localstorage because data changed
   storeList();
@@ -101,34 +98,40 @@ function storeList() {
 }
 
 //function that that edits tasks with date and time.
-function editItem(event) {
+function editItem(event, i) {
+  const editEl = event.target.closest(".task");
+  let taskUpdate = editEl.querySelector(".new-task-created");
+  let dateUpdate = editEl.querySelector(".due-date");
+  let timeUpdate = editEl.querySelector(".due-time");
+  let editbtn = editEl.querySelector(".edit");
 
-const editEl = event.target.closest(".task");
-let taskUpdate = editEl.querySelector(".new-task-created");
-let dateUpdate = editEl.querySelector(".due-date");
-let timeUpdate = editEl.querySelector(".due-time");
-let editbtn = editEl.querySelector(".edit");
+  if (editbtn.innerHTML.toLowerCase() == "edit") {
+    taskUpdate.removeAttribute("readonly");
+    dateUpdate.removeAttribute("readonly");
+    timeUpdate.removeAttribute("readonly");
+    taskUpdate.focus();
 
-if (editbtn.innerHTML.toLowerCase() == "edit"){
-  taskUpdate.removeAttribute("readonly");
-  dateUpdate.removeAttribute("readonly");
-  timeUpdate.removeAttribute("readonly");
-  taskUpdate.focus();
-
-  editbtn.innerHTML = "Save";
-
-}
-else{
-  taskUpdate.setAttribute("readonly", "readonly");
-  dateUpdate.setAttribute("readonly", "readonly");
-  timeUpdate.setAttribute("readonly", "readonly");
-  editbtn.innerHTML = "Edit";
-}
-
+    editbtn.innerHTML = "Save";
+  } else {
+    taskUpdate.setAttribute("readonly", "readonly");
+    dateUpdate.setAttribute("readonly", "readonly");
+    timeUpdate.setAttribute("readonly", "readonly");
+    editbtn.innerHTML = "Edit";
+    taskList[i] = {
+      id: taskList[i].id,
+      taskNew: taskUpdate.value,
+      taskDate: dateUpdate.value,
+      taskTime: timeUpdate.value,
+    };
+    // store the list on localstorage because data changed
+    storeList();
+    // render list again because you've added a new entry
+    renderList();
+  }
 }
 
 //function that that completes task.
-function completeItem(event) {
+function completeItem(event, i) {
   const element = event.target.closest(".task-content");
   let taskItem = element.querySelector(".new-task-created");
   let dateItem = element.querySelector(".due-date");
@@ -137,4 +140,14 @@ function completeItem(event) {
   taskItem.style.textDecoration = "line-through";
   dateItem.style.textDecoration = "line-through";
   timeItem.style.textDecoration = "line-through";
+
+  taskList[i] = {
+    ...taskList[i],
+    textDecoration: true,
+  };
+  console.log("taskList", taskList);
+  // store the list on localstorage because data changed
+  storeList();
+  // render list again because you've added a new entry
+  renderList();
 }

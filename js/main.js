@@ -57,18 +57,20 @@ function renderList() {
     return `<div class="task">
             <div class="task-content">
                 <div class="task" data-id="${data.id}">
-                <div class="new-task-created">${data.taskNew}</div>
-                <label class="due-date">${data.taskDate}</label>
-                <label class="due-time">${data.taskTime}</label>
+                <input class="new-task-created" value="${data.taskNew}" readonly></input>
+                <input class="due-date" type="date" value="${data.taskDate}" readonly></input>
+                <input class="due-time" type="time" value="${data.taskTime}" readonly></input>
+                
             </div>
     
             <div class="action-buttons">
                 <button onclick="editItem(event)" class="edit" data-id="${data.id}">Edit</button>
                 <button onclick="deleteItem(event)" class="delete" data-id="${data.id}">Delete</button>
                 <button onclick="completeItem(event)" class="complete" data-id="${data.id}">Complete</button>
-            </div>
+            
         </div>`;
-  });
+  })
+  el.input.value = "";
 
   
 }
@@ -86,6 +88,7 @@ function addTask() {
 //function that removes task from array with delete button.
 function deleteItem(event) {
   taskList.splice(taskList.indexOf(event.target.dataset.id), 1);
+
   // store the list on localstorage because data changed
   storeList();
   // render list again because entry was removed
@@ -98,25 +101,31 @@ function storeList() {
 }
 
 //function that that edits tasks with date and time.
-function editItem() {
+function editItem(event) {
 
-  let updateInput = document.createElement("div")
-  updateInput.innerHTML = `<div class="form-update">
-        <input class ="input-update" type="text">
-        <input class="date-update" type="date">
-        <input class="time-update" type="time">
-        <button onclick="UpdateTask()" class="update" id="update">Save</button>
-        <button onclick="close()" class="close" id="close">Save</button>
-    </div>`;
+const editEl = event.target.closest(".task");
+let taskUpdate = editEl.querySelector(".new-task-created");
+let dateUpdate = editEl.querySelector(".due-date");
+let timeUpdate = editEl.querySelector(".due-time");
+let editbtn = editEl.querySelector(".edit");
 
-    updateEl.modal.appendChild(updateInput);
+if (editbtn.innerHTML.toLowerCase() == "edit"){
+  taskUpdate.removeAttribute("readonly");
+  dateUpdate.removeAttribute("readonly");
+  timeUpdate.removeAttribute("readonly");
+  taskUpdate.focus();
+
+  editbtn.innerHTML = "Save";
+
+}
+else{
+  taskUpdate.setAttribute("readonly", "readonly");
+  dateUpdate.setAttribute("readonly", "readonly");
+  timeUpdate.setAttribute("readonly", "readonly");
+  editbtn.innerHTML = "Edit";
 }
 
-
-function UpdateTask(){
-
 }
-
 
 //function that that completes task.
 function completeItem(event) {

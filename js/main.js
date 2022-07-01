@@ -56,9 +56,15 @@ function renderList() {
     return `<div class="task">
             <div class="task-content">
                 <div class="task" data-id="${data.id}">
-                <input class="new-task-created" value="${data.taskNew}" readonly style="${data.textDecoration ? "text-decoration: line-through" : ""}"></input>
-                <input class="due-date" type="date" value="${data.taskDate}" readonly></input>
-                <input class="due-time" type="time" value="${data.taskTime}" readonly></input>
+                <input class="new-task-created" value="${
+                  data.taskNew
+                }" readonly style="${data.textDecoration ? "text-decoration: line-through" : ""}"></input>
+                <input class="due-date" type="date" value="${
+                  data.taskDate
+                }" readonly></input>
+                <input class="due-time" type="time" value="${
+                  data.taskTime
+                }" readonly></input>
             </div>
     
             <div class="action-buttons">
@@ -66,10 +72,9 @@ function renderList() {
                 <button onclick="deleteItem(event, ${i})" class="delete" data-id="${data.id}">Delete</button>
                 <button onclick="completeItem(event, ${i})" class="complete" data-id="${data.id}">Complete</button>
         </div>`;
-  })
-  
-  el.input.value = "";
+  });
 
+  el.input.value = "";
 }
 
 //event listner that listens for add button.
@@ -77,7 +82,7 @@ function addTask() {
   taskList.push(makeNewTask());
 
   // store the list on localstorage because data changed
-    storeList();
+  storeList();
   // render list again because you've added a new entry
   renderList();
 }

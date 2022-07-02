@@ -80,7 +80,7 @@ function renderList() {
 //event listner that listens for add button.
 function addTask() {
   taskList.push(makeNewTask());
-
+  
   // store the list on localstorage because data changed
   storeList();
   // render list again because you've added a new entry

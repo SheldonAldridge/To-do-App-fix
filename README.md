@@ -10,6 +10,5 @@ The following features that the application currently have are as follows:
 - Mark as complete
 - Store user list
 - Delete the task
-- Sort the User List
 
 

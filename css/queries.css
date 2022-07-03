@@ -1,3 +1,79 @@
+@media (max-width:450px){    
+.header h1{
+    font-size: 15px;
+}
+.time-display{
+    margin-right:2em;
+    font-size:0.8em;
+    padding-top: 1em;
+}
+.form{
+   width:21rem;
+}
+
+.add-task{
+width:20em;
+}
+
+.user-input{
+   padding: 0.5em; 
+   width:10em;
+   font-size: 1em;
+}
+
+.user-input::placeholder{
+    font-size: 12px;
+}
+
+.date,.time{
+ font-size: 10px;
+ margin-top:-3em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    padding-left:15px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+padding-left:10px;
+}
+
+.add{
+    font-size: 14px;
+    position: absolute;
+    margin-top: 3em;
+    margin-left: 15em;
+}
+.task-content{
+    width: 21em;
+}
+
+.new-task-created{
+    padding: 0.5em;
+    width: 10em;
+    font-size: 1em;
+}
+
+.due-date{
+    font-size: 10px;
+    margin-top: -3em; 
+}
+
+.due-time{
+    font-size: 10px;
+    margin-top: -3em; 
+}
+
+.edit,.delete,.complete{
+   font-size: 14px; 
+}
+
+.sky,.sky2,.sky3{
+display:none;
+}
+}
+
+
 @media (max-width:576px){
 
 .header img{
